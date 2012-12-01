@@ -1,0 +1,19 @@
+if (!utils || typeof utils !== 'object') utils = {};
+
+/**
+ * Argument Type Correction / Shifter
+ *
+ * JSON methods simplified into a single function that determines what to do based on input data.
+ *
+ * @param {Array} args Argument array, could be `arguments` or custom array.
+ * @param {Number} shift Amount to shift `args` parameter by. Defaults to zero.
+ * @return Argument array, fixes invalid arguments data-type and shifts array if needed.
+ * @package utils
+ * @author Nijiko Yonskai
+ * @year 2012
+ */
+utils.args = function (args, shift) {
+  args = args || [];
+  shift = shift || 0;
+  return Array.prototype.splice.call(args, shift);
+};
