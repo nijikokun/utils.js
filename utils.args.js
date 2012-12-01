@@ -11,6 +11,7 @@ if (!utils || typeof utils !== 'object') utils = {};
  * @package utils
  * @author Nijiko Yonskai
  * @year 2012
+ * @license AOL <aol.nexua.org>
  */
 utils.args = function (args, shift) {
   return Array.prototype.splice.call(args || [], shift || 0);

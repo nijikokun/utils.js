@@ -9,6 +9,7 @@ if (!utils.spaces || typeof utils.spaces !== 'object') utils.spaces = {};
  * @package utils.spaces
  * @author Nijiko Yonskai
  * @year 2012
+ * @license AOL
  */
 utils.spaces.countBefore = function (data) {
   return (data.replace(/[^\s](.*)/g, '')).length;
@@ -24,6 +25,7 @@ utils.spaces.countBefore = function (data) {
  * @package utils.spaces
  * @author Nijiko Yonskai
  * @year 2012
+ * @license AOL <aol.nexua.org>
  */
 utils.spaces.trim = function (data, skipBeginning, skipEnding) {
   if (!skipBeginning) data.replace(/^\s\s*/, '');
