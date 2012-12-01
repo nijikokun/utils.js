@@ -13,7 +13,5 @@ if (!utils || typeof utils !== 'object') utils = {};
  * @year 2012
  */
 utils.args = function (args, shift) {
-  args = args || [];
-  shift = shift || 0;
-  return Array.prototype.splice.call(args, shift);
+  return Array.prototype.splice.call(args || [], shift || 0);
 };
