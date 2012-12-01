@@ -12,7 +12,7 @@ if (!utils || typeof utils !== 'object') utils = {};
  * @year 2012
  */
 utils.json = function (data) {
-  var splice = Array.prototype.splice, args = splice.call(arguments, 0); // var args = utils.args(arguments);
+  var args = Array.prototype.splice.call(arguments, 0); // var args = utils.args(arguments);
   return (data ? (
     typeof data === 'string' ? (
       JSON.parse.apply(this, args)
