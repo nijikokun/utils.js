@@ -8,9 +8,9 @@ if (!utils || typeof utils !== 'object') utils = {};
  * @param {Mixed} data JSON string / object to be manipulated.
  * @return Dependent on input but will return a JSON object if datas data-type is string, otherwise returns JSON object.
  * @package utils
- * @author Nijiko Yonskai
+ * @author Nijiko Yonskai <nijikokun@gmail.com>
  * @year 2012
- * @license AOL <aol.nexua.org>
+ * @license AOL <http://aol.nexua.org>
  */
 utils.json = function (data) {
   var args = Array.prototype.splice.call(arguments, 0); // var args = utils.args(arguments);

@@ -7,9 +7,9 @@ if (!utils.math || typeof utils.math !== 'object') utils.math = {};
  * @param  {Number} x Some value
  * @return {Number}   Absolute Value
  * @package utils.math
- * @author Nijiko Yonskai
+ * @author Nijiko Yonskai <nijikokun@gmail.com>
  * @year 2012
- * @license AOL <aol.nexua.org>
+ * @license AOL <http://aol.nexua.org>
  */
 utils.math.abs = function (x) {
   return x < 0 ? -x : x;
@@ -25,9 +25,9 @@ utils.math.abs = function (x) {
  * @param  {Number} max   Maximum value
  * @return {Number} Check value compared to min and max.
  * @package utils.math
- * @author Nijiko Yonskai
+ * @author Nijiko Yonskai <nijikokun@gmail.com>
  * @year 2012
- * @license AOL <aol.nexua.org>
+ * @license AOL <http://aol.nexua.org>
  */
 utils.math.normalize = utils.math.norm = function (value, min, max) {
   return (min < max) ? (value - min) / (max - min) : (value - min) / (min - max);
@@ -44,9 +44,9 @@ utils.math.normalize = utils.math.norm = function (value, min, max) {
  * @param  {Number} min   Minimum value
  * @param  {Number} max   Maximum value
  * @package utils.math
- * @author Nijiko Yonskai
+ * @author Nijiko Yonskai <nijikokun@gmail.com>
  * @year 2012
- * @license AOL <aol.nexua.org>
+ * @license AOL <http://aol.nexua.org>
  */
 utils.math.lerp = function (value, min, max) {
   return min + (max - min) * value;
@@ -62,9 +62,9 @@ utils.math.lerp = function (value, min, max) {
  * @param  {Number} omax upper bound of value's target range
  * @return {Number} Re-mapped value from current range to given range
  * @package utils.math
- * @author Nijiko Yonskai
+ * @author Nijiko Yonskai <nijikokun@gmail.com>
  * @year 2012
- * @license AOL <aol.nexua.org>
+ * @license AOL <http://aol.nexua.org>
  */
 utils.math.remap = function (value, min, max, omin, omax) {
   return omin + (omax - omin) * (value - min) / (max - min);
@@ -78,9 +78,9 @@ utils.math.remap = function (value, min, max, omin, omax) {
  * @param  {Number} max   Maximum value
  * @return {Number} Clamped value
  * @package utils.math
- * @author Nijiko Yonskai
+ * @author Nijiko Yonskai <nijikokun@gmail.com>
  * @year 2012
- * @license AOL <aol.nexua.org>
+ * @license AOL <http://aol.nexua.org>
  */
 utils.math.clamp = function (value, min, max) {
   return Math.max(min, Math.min(max, value));
@@ -91,9 +91,9 @@ utils.math.clamp = function (value, min, max) {
  *
  * @return {Number} angle in degrees (not normalized to 0 ... 360)
  * @package utils.math
- * @author Nijiko Yonskai
+ * @author Nijiko Yonskai <nijikokun@gmail.com>
  * @year 2012
- * @license AOL <aol.nexua.org>
+ * @license AOL <http://aol.nexua.org>
  */
 utils.math.radToDeg = function (radian){
   return 180 / Math.PI * radian;
@@ -104,9 +104,9 @@ utils.math.radToDeg = function (radian){
  *
  * @return {Number} angle in radians (not normalized to 0 ... Math.PI*2)
  * @package utils.math
- * @author Nijiko Yonskai
+ * @author Nijiko Yonskai <nijikokun@gmail.com>
  * @year 2012
- * @license AOL <aol.nexua.org>
+ * @license AOL <http://aol.nexua.org>
  */
 utils.math.degToRad = function(degree) {
   return Math.PI / 180 * degree;
@@ -119,9 +119,9 @@ utils.math.degToRad = function(degree) {
  * @param  {Number} max   Maximum value
  * @param  {Boolean} flt  Determines whether returned value is a float or a (rounded) integer.
  * @package utils.math
- * @author Nijiko Yonskai
+ * @author Nijiko Yonskai <nijikokun@gmail.com>
  * @year 2012
- * @license AOL <aol.nexua.org>
+ * @license AOL <http://aol.nexua.org>
  */
 utils.math.randomBetween = function (min, max, flt) {
   var result = Math.exp(Math.random() * Math.log(max - min)) + min;

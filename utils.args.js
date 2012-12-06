@@ -9,9 +9,9 @@ if (!utils || typeof utils !== 'object') utils = {};
  * @param {Number} shift Amount to shift `args` parameter by. Defaults to zero.
  * @return Argument array, fixes invalid arguments data-type and shifts array if needed.
  * @package utils
- * @author Nijiko Yonskai
+ * @author Nijiko Yonskai <nijikokun@gmail.com>
  * @year 2012
- * @license AOL <aol.nexua.org>
+ * @license AOL <http://aol.nexua.org>
  */
 utils.args = function (args, shift) {
   return Array.prototype.splice.call(args || [], shift || 0);

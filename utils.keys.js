@@ -5,9 +5,9 @@ if (!utils.keys || typeof utils.keys !== 'object') utils.keys = {};
  * Keyboard keyChar Dictionary with keyChar as keys and value is an array-list with possible names.
  *
  * @package utils.keys
- * @author Nijiko Yonskai
+ * @author Nijiko Yonskai <nijikokun@gmail.com>
  * @year 2012
- * @license AOL <aol.nexua.org>
+ * @license AOL <http://aol.nexua.org>
  */
 utils.keys.dictionary = {
   8:    [ 'backspace' ],

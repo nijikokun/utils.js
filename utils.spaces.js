@@ -7,9 +7,9 @@ if (!utils.spaces || typeof utils.spaces !== 'object') utils.spaces = {};
  * @param {String} data
  * @return Length of spaces before characters aside from space based characters.
  * @package utils.spaces
- * @author Nijiko Yonskai
+ * @author Nijiko Yonskai <nijikokun@gmail.com>
  * @year 2012
- * @license AOL
+ * @license AOL <http://aol.nexua.org>
  */
 utils.spaces.countBefore = function (data) {
   return (data.replace(/[^\s](.*)/g, '')).length;
@@ -23,9 +23,9 @@ utils.spaces.countBefore = function (data) {
  * @param {Boolean} skipEnding If set, spaces at the end of the string will be ignored.
  * @return Trims spaces from both sides or either side depending on set parameters.
  * @package utils.spaces
- * @author Nijiko Yonskai
+ * @author Nijiko Yonskai <nijikokun@gmail.com>
  * @year 2012
- * @license AOL <aol.nexua.org>
+ * @license AOL <http://aol.nexua.org>
  */
 utils.spaces.trim = function (data, skipBeginning, skipEnding) {
   if (!skipBeginning) data.replace(/^\s\s*/, '');
