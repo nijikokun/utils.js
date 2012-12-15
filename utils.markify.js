@@ -110,7 +110,7 @@ utils.markify = function (options) {
   this.process = function (string) {
     for (var i = 0; i < this.regex.length; i++)
       if (this.options.skip.indexOf(this.regex[i].type) === -1)
-        string = string.replace(regex[i].expr, regex[i].replace);
+        string = string.replace(this.regex[i].expr, this.regex[i].replace);
     return string;
   };
 
