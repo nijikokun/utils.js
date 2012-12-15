@@ -21,8 +21,17 @@ utils.codeClean.regex = [
       'Find and replace broken statements.',
       'Javascript spec says that newlines after `}` and before statements is bad due to semicolon insertion.'
     ],
-    find: /\}(\n|\r|\r\n)([\s]+)(else|else if|finally)\s\{/gim,
-    replace: "} $3 {"
+    find: /\}(\n|\r|\r\n)[\s]+?(else|else if|finally)\s\{/gim,
+    replace: "} $2 {"
+  },
+  
+  {
+    filter: 'badly-spaced-statements',
+    description: [
+      'Finds and fixes badly spaced statements.'
+    ],
+    find: /(if|for|while|switch|foreach|function)\s?\(\s?([^\)]+)\s?\)\s?/gm,
+    replace: '$1 ($2) '
   }
 ];
 
