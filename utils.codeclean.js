@@ -1,5 +1,5 @@
-if (!utils || typeof utils !== 'object') utils = {};
-if (!utils.codeClean || typeof utils.codeClean !== 'object') utils.codeClean = {};
+if (typeof utils !== 'object' || !utils) utils = {};
+if (typeof utils.codeClean !== 'object' || !utils.codeClean) utils.codeClean = {};
 
 /**
  * Find Replace Regex commonly used in SublimeText to clean up other coders bad habits.

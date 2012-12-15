@@ -1,5 +1,5 @@
-if (!utils || typeof utils !== 'object') utils = {};
-if (!utils.keys || typeof utils.keys !== 'object') utils.keys = {};
+if (typeof utils !== 'object' || !utils) utils = {};
+if (typeof utils.keys !== 'object' || !utils.keys) utils.keys = {};
 
 /**
  * Keyboard keyChar Dictionary with keyChar as keys and value is an array-list with possible names.

@@ -1,5 +1,5 @@
-if (!utils || typeof utils !== 'object') utils = {};
-if (!utils.spaces || typeof utils.spaces !== 'object') utils.spaces = {};
+if (typeof utils !== 'object' || !utils) utils = {};
+if (typeof utils.spaces !== 'object' || !utils.spaces) utils.spaces = {};
 
 /**
  * Counts spaces before any characters aside from space based text start.

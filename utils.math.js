@@ -1,5 +1,5 @@
-if (!utils || typeof utils !== 'object') utils = {};
-if (!utils.math || typeof utils.math !== 'object') utils.math = {};
+if (typeof utils !== 'object' || !utils) utils = {};
+if (typeof utils.math !== 'object' || !utils.math) utils.math = {};
 
 /** 
  * Returns the absolute value.
