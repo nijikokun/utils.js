@@ -2,9 +2,6 @@
 
   Code that is either duplicated throughout multiple personal projects or very broad usage. Code can be broken at any time, if you fix something please consider forking and contacting me so I can update this one as well!
   
-## TOC
- 
- 
   
 ## Changelog
 
