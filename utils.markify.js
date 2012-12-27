@@ -37,12 +37,6 @@ utils.markify = function (options) {
   };
 
   this.regex = [
-    { // Tags
-      type: 'tags',
-      expr: /^([\w]+):/i,
-      replace: '<em class="$1">$1</em>'
-    },
-
     { // Strong
       type: 'strong',
       expr: /(\*\*|__)(?=\S)([^\*\_]+?[*_]*)(?!=\S)\1/g,
