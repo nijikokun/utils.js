@@ -1,14 +1,32 @@
-if (typeof utils !== 'object' || !utils)
-  /**
-   * @namespace Core Namespace
-   */
-  var utils = {};
+/**
+ * Utils namespace check
+ *
+ * @type Object
+ */
+var utils = (typeof utils === 'undefined' || typeof utils !== 'object') ? {} : utils;
 
 if (typeof utils.codeClean !== 'object' || !utils.codeClean)
   /**
    * @namespace Sub-namespace for cleaning codesource
    */
   utils.codeClean = {};
+
+/**
+ * Takes above regex blocks, finds and replaces inefficient code / unstylish code
+ *
+ * @return String
+ * @memberOf utils
+ * @author Nijiko Yonskai <nijikokun@gmail.com>
+ * @license AOL <http://aol.nexua.org>
+ * @year 2012
+ */
+utils.codeClean = function (text) {
+  for (var i = 0; i < this.codeClean.regex.length; i++)
+    if (typeof this.codeClean.regex[i].replace === 'function')
+      text = this.codeClean.regex[i].replace(text, this.codeClean.regex[i].find);
+    else text = text.replace(this.codeClean.regex[i].find, this.codeClean.regex[i].replace);
+  return text;
+}
 
 /**
  * Takes above regex blocks, finds and replaces inefficient code / unstylish code
@@ -39,7 +57,6 @@ utils.codeClean = function (text) {
  *
  * Todo in future
  *
- *   - Spacing checks
  *   - Statement blocks for optimisations such as single line statements having brackets.
  *   - Multi-line statement blocks that align for no reason with disregard to spacing.
  *   - Ternerary checks
@@ -97,12 +114,21 @@ utils.codeClean.regex = [
   },
 
   {
-    filter: 'bps-statements',
+    filter: 'bps-statements-start',
     description: [
-      'Finds and fixes badly pre-spaced statements.'
+      'Finds and fixes badly pre-spaced statement beginnings.'
     ],
     find: /(if|for|while|switch|foreach|function)\s?\(\s/g,
     replace: "$1 ("
+  },
+
+  {
+    filter: 'bps-statements-end',
+    description: [
+      'Finds and fixes badly pre-spaced statement endings.'
+    ],
+    find: /\s\)\s?\{/g,
+    replace: ") {"
   },
 
   { // This can affect comments, arrays, methods, and more as well, beware.
@@ -143,7 +169,7 @@ utils.codeClean.regex = [
   {
     filter: 'bps-jquery',
     description: [
-      'Finds and fixes incorrectly spaced jquery beginnings.'
+      'Fixes incorrect jQuery paren statements.'
     ],
     find: /\$\s?\(\s?/g,
     replace: "$("
@@ -152,7 +178,7 @@ utils.codeClean.regex = [
   {
     filter: 'bps-scoped',
     description: [
-      'Finds and fixes incorrectly spaced scoped methods beginnings.'
+      'Fixes incorrectly spaced method scopes.'
     ],
     find: /(\)|\]|\$|[\d\w]+)\.([\d\w\.]+)\s?\((?:\ |\t)/g,
     replace: "$1.$2("
@@ -161,7 +187,7 @@ utils.codeClean.regex = [
   {
     filter: 'bsn-array-sel-start',
     description: [
-      'Finds one and fixes incorrectly spaced array selectors'
+      'Fixes array statements beginnings with optional ending traces.'
     ],
     find: /\[\s([\d\w\"\'\[\]]+)\s?\]/g,
     replace: function (text, regex) { // "[\1]"
@@ -178,7 +204,7 @@ utils.codeClean.regex = [
   {
     filter: 'bsn-array-sel-ending',
     description: [
-      'Finds one and fixes incorrectly spaced array selectors'
+      'Fixes array statement endings with optional beginning traces.'
     ],
     find: /\[\s?([\d\w\"\'\[\]]+)\s\]/g,
     replace: function (text, regex) { // "[\1]"
