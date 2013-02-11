@@ -151,10 +151,10 @@ utils.codeClean.regex = [
   {
     filter: 'bps-functions',
     description: [
-      'Finds and fixes incorrectly spaced function beginnings.'
+      'Function declarations of all types with incorrect spacing.'
     ],
-    find: /(\(|\!|\;)?\s?function\s?([\w\d]+)\s?\(\s?/g,
-    replace: "$1function $2 ("
+    find: /(\(|\!|\;)?\s?function\s?([\w\d]+\s?)?\(\s?/g,
+    replace: "$1function $2("
   },
 
   {
