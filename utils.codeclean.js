@@ -153,7 +153,7 @@ utils.codeClean.regex = [
     description: [
       'Finds and fixes incorrectly spaced function beginnings.'
     ],
-    find: /(\(|\!|\;)?function\s?([\w\d]+)\s?\(\s?/g,
+    find: /(\(|\!|\;)?\s?function\s?([\w\d]+)\s?\(\s?/g,
     replace: "$1function $2 ("
   },
 
