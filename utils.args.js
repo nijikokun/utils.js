@@ -1,4 +1,8 @@
-if (!utils || typeof utils !== 'object') utils = {};
+if (typeof utils !== 'object' || !utils) 
+  /**
+   * @namespace Core Namespace
+   */
+  utils = {};
 
 /**
  * Argument Type Correction / Shifter
@@ -8,7 +12,7 @@ if (!utils || typeof utils !== 'object') utils = {};
  * @param {Array} args Argument array, could be `arguments` or custom array.
  * @param {Number} shift Amount to shift `args` parameter by. Defaults to zero.
  * @return Argument array, fixes invalid arguments data-type and shifts array if needed.
- * @package utils
+ * @memberOf utils
  * @author Nijiko Yonskai <nijikokun@gmail.com>
  * @year 2012
  * @license AOL <http://aol.nexua.org>

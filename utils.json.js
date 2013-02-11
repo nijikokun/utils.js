@@ -1,4 +1,8 @@
-if (!utils || typeof utils !== 'object') utils = {};
+if (typeof utils !== 'object' || !utils) 
+  /**
+   * @namespace Core Namespace
+   */
+  utils = {};
 
 /**
  * JSON Parser / Stringifier
@@ -7,10 +11,10 @@ if (!utils || typeof utils !== 'object') utils = {};
  *
  * @param {Mixed} data JSON string / object to be manipulated.
  * @return Dependent on input but will return a JSON object if datas data-type is string, otherwise returns JSON object.
- * @package utils
+ * @memberOf utils
  * @author Nijiko Yonskai <nijikokun@gmail.com>
- * @year 2012
  * @license AOL <http://aol.nexua.org>
+ * @year 2012
  */
 utils.json = function (data) {
   var args = Array.prototype.splice.call(arguments, 0); // var args = utils.args(arguments);

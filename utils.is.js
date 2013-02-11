@@ -1,9 +1,18 @@
-if (typeof utils !== 'object' || !utils) utils = {};
-if (typeof utils.is !== 'object' || !utils.is) utils.is = {};
+if (typeof utils !== 'object' || !utils) 
+  /**
+   * @namespace Core Namespace
+   */
+  utils = {};
+
+if (typeof utils.is !== 'object' || !utils.is) 
+  /**
+   * @namespace Sub-namespace for Type Checking
+   */
+  utils.is = {};
 
 /**
  * Object that holds prototype references
- * @package utils.is
+ * @memberOf utils
  */
 utils.proto = {
   Array: Array.prototype,
@@ -17,13 +26,13 @@ utils.proto = {
  * 
  * Used to generate generic `isType` methods on `utils` parent namespace
  * 
- * @package utils.is
+ * @memberOf utils.is
  */
 utils.is.types = 'Array Arguments Date Function Number Object RegExp String'.split(' ');
 
 /**
  * Array containing object type string values
- * @package utils.is
+ * @memberOf utils.is
  */
 utils.is.typeStrings = {
   Boolean: '[object Boolean]'
@@ -35,10 +44,10 @@ utils.is.typeStrings = {
  * @param {Mixed} o Non-specific value
  * @return {String} toString call value
  * @return Function
- * @package utils.is
+ * @memberOf utils.is
  * @author Nijiko Yonskai <nijikokun@gmail.com>
- * @year 2012
  * @license AOL <http://aol.nexua.org>
+ * @year 2012
  */
 utils.is.type = function (o) {
   return Object.prototype.toString.call(o);
@@ -55,10 +64,9 @@ utils.is.type = function (o) {
  *    if(utils.isArray([])) console.log("It's an array!");
  *
  * @return Function
- * @package utils.is
  * @author Nijiko Yonskai <nijikokun@gmail.com>
- * @year 2012
  * @license AOL <http://aol.nexua.org>
+ * @year 2012
  */
 (function(ns, ps){
   var type, i;
@@ -74,10 +82,10 @@ utils.is.type = function (o) {
        * 
        * @param {Mixed} o Non-specific, iterated method. 
        * @return Boolean
-       * @package utils
+       * @memberOf utils
        * @author Nijiko Yonskai
-       * @year 2012
        * @license AOL <http://aol.nexua.org>
+       * @year 2012
        */
       return function (o) {
         return Object.prototype.toString.call(o) === str;
@@ -94,10 +102,10 @@ utils.is.type = function (o) {
  * 
  * @param {Mixed} o Non-specific checked value 
  * @return Boolean
- * @package utils
+ * @memberOf utils
  * @author Nijiko Yonskai
- * @year 2012
  * @license AOL <http://aol.nexua.org>
+ * @year 2012
  */
 utils.isEmpty = function (o) {
   if(utils.isArray(o) || utils.isString(o))
@@ -116,10 +124,10 @@ utils.isEmpty = function (o) {
  * 
  * @param {Mixed} o Non-specific checked value 
  * @return Boolean
- * @package utils
+ * @memberOf utils
  * @author Nijiko Yonskai
- * @year 2012
  * @license AOL <http://aol.nexua.org>
+ * @year 2012
  */
 utils.isElement = function (o) {
   return !!(o && o.nodeType == 1);
@@ -130,10 +138,10 @@ utils.isElement = function (o) {
  * 
  * @param {Mixed} o Non-specific checked value 
  * @return Boolean
- * @package utils
+ * @memberOf utils
  * @author Nijiko Yonskai
- * @year 2012
  * @license AOL <http://aol.nexua.org>
+ * @year 2012
  */
 utils.isObject = function (o) {
   return o == Object(o);
@@ -147,10 +155,10 @@ utils.isObject = function (o) {
  * 
  * @param {Mixed} o Non-specific checked value 
  * @return Boolean
- * @package utils
+ * @memberOf utils
  * @author Nijiko Yonskai
- * @year 2012
  * @license AOL <http://aol.nexua.org>
+ * @year 2012
  */
 utils.isBoolean = function (o) {
   return o === true || o === false || utils.is.type(o) == '[object Boolean]';
@@ -164,10 +172,10 @@ utils.isBoolean = function (o) {
  * 
  * @param {Mixed} o Non-specific checked value 
  * @return Boolean
- * @package utils
+ * @memberOf utils
  * @author Nijiko Yonskai
- * @year 2012
  * @license AOL <http://aol.nexua.org>
+ * @year 2012
  */
 utils.isNaN = function (o) {
   return utils.isNumber(o) && o != +o;
@@ -182,10 +190,10 @@ utils.isNaN = function (o) {
  * 
  * @param {Mixed} o Non-specific checked value 
  * @return Boolean
- * @package utils
+ * @memberOf utils
  * @author Nijiko Yonskai
- * @year 2012
  * @license AOL <http://aol.nexua.org>
+ * @year 2012
  */
 utils.isFinite = function (o) {
   return isFinite(o) && !isNaN( parseFloat(o));
@@ -196,10 +204,10 @@ utils.isFinite = function (o) {
  *
  * @param {Mixed} o Non-specific checked value 
  * @return Boolean
- * @package utils
+ * @memberOf utils
  * @author Nijiko Yonskai
- * @year 2012
  * @license AOL <http://aol.nexua.org>
+ * @year 2012
  */
 utils.isNull = function (o) {
   return o === null;
@@ -210,10 +218,10 @@ utils.isNull = function (o) {
  * 
  * @param {Mixed} o Non-specific checked value 
  * @return Boolean
- * @package utils
+ * @memberOf utils
  * @author Nijiko Yonskai
- * @year 2012
  * @license AOL <http://aol.nexua.org>
+ * @year 2012
  */
 utils.isUndefined = function (o) {
   return o === void 0;

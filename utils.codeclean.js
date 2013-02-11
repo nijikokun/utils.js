@@ -1,11 +1,37 @@
-if (typeof utils !== 'object' || !utils) utils = {};
-if (typeof utils.codeClean !== 'object' || !utils.codeClean) utils.codeClean = {};
+if (typeof utils !== 'object' || !utils)
+  /**
+   * @namespace Core Namespace
+   */
+  var utils = {};
+
+if (typeof utils.codeClean !== 'object' || !utils.codeClean)
+  /**
+   * @namespace Sub-namespace for cleaning codesource
+   */
+  utils.codeClean = {};
+
+/**
+ * Takes above regex blocks, finds and replaces inefficient code / unstylish code
+ *
+ * @return String
+ * @memberOf utils
+ * @author Nijiko Yonskai <nijikokun@gmail.com>
+ * @license AOL <http://aol.nexua.org>
+ * @year 2012
+ */
+utils.codeClean = function (text) {
+  for (var i = 0; i < this.codeClean.regex.length; i++)
+    if (typeof this.codeClean.regex[i].replace === 'function')
+      text = this.codeClean.regex[i].replace(text, this.codeClean.regex[i].find);
+    else text = text.replace(this.codeClean.regex[i].find, this.codeClean.regex[i].replace);
+  return text;
+}
 
 /**
  * Find Replace Regex commonly used in SublimeText to clean up other coders bad habits.
  * This also fixes code for syntax highlighting, such as inner params and such.
  * Seriously. Stop coding bad. :(
- * 
+ *
  * For usage in ST2:
  *   - Copy `find:` regex without starting and ending definitions: `//xx`
  *   - Replace `$` in `replace:` tags to `\`
@@ -18,22 +44,31 @@ if (typeof utils.codeClean !== 'object' || !utils.codeClean) utils.codeClean = {
  *   - Multi-line statement blocks that align for no reason with disregard to spacing.
  *   - Ternerary checks
  *
- * @package utils.codeClean
+ * @memberOf utils.codeClean
  * @author Nijiko Yonskai <nijikokun@gmail.com>
- * @year 2012
  * @license AOL <http://aol.nexua.org>
+ * @year 2012
  */
 utils.codeClean.regex = [
+  {
+    filter: 'diffline-bracket',
+    description: [
+      'Find and replace broken function brackets.',
+    ],
+    find: /\)\n\s+\{/gim,
+    replace: ") {"
+  },
+
   {
     filter: 'broken-statements',
     description: [
       'Find and replace broken statements.',
       'Javascript spec says that newlines after `}` and before statements is bad due to semicolon insertion.'
     ],
-    find: /\}(\n|\r|\r\n)[\s]+?(else|else if|finally)\s\{/gim,
-    replace: "} $2 {"
+    find: /\}(\n|\r|\r\n)[\s]+?(else|else if|finally)(\s\{)?/gim,
+    replace: "} $2$3"
   },
-  
+
   {
     filter: 'bfs-statements',
     description: [
@@ -75,17 +110,15 @@ utils.codeClean.regex = [
     description: [
       'Finds and fixes badly end-spaced statements.'
     ],
-    find: /([^\s])\s(?!\s)(\]|\))(\n|\s|\;|\,)(\{)?/g,
-    replace: "$1$2$3"
-    replace: function (matches, one) { // "$1$2$3"
-      var regex = /([\w\d\[\]\(\)])\s(?!\s)(\]|\))(\n|\s|\;|\,)(\{)?/g;
-
-      var nest = function (text) { 
-        text = text.replace(regex, "$1$2$3$4");
-        return (text.match(regex).length > 0) nest(text) : text;
+    find: /([^\s])\s(?!\s)(\]|\))(\n|\s|\;|\,|\.|\[)(\{)?/g,
+    replace: function (text, regex) { // "[\1]"
+      var replacement = "$1$2$3$4";
+      var nest = function (t) {
+        t = t.replace(regex, replacement);
+        return (t.match(regex) !== null) ? nest(t) : t;
       }
 
-      return text(one);
+      return nest(text);
     }
   },
 
@@ -108,29 +141,54 @@ utils.codeClean.regex = [
   },
 
   {
+    filter: 'bps-jquery',
+    description: [
+      'Finds and fixes incorrectly spaced jquery beginnings.'
+    ],
+    find: /\$\s?\(\s?/g,
+    replace: "$("
+  },
+
+  {
     filter: 'bps-scoped',
     description: [
       'Finds and fixes incorrectly spaced scoped methods beginnings.'
     ],
-    find: /([\d\w]+)\.([\d\w\.]+)\s?\(\s/g,
+    find: /(\)|\]|\$|[\d\w]+)\.([\d\w\.]+)\s?\((?:\ |\t)/g,
     replace: "$1.$2("
   },
 
   {
-    filter: 'bsn-array-sel',
+    filter: 'bsn-array-sel-start',
     description: [
       'Finds one and fixes incorrectly spaced array selectors'
     ],
-    find: /\[\s([\d\w\"\'\[\]]+)\s\]/g,
-    replace: function (matches, one) { // "[\1]"
-      var regex = /\[\s([\d\w\"\'\[\]]+)\s\]/g;
-
-      var nest = function (text) { 
-        text = text.replace(regex, "[$1]");
-        return (text.match(regex).length > 0) nest(text) : text;
+    find: /\[\s([\d\w\"\'\[\]]+)\s?\]/g,
+    replace: function (text, regex) { // "[\1]"
+      var replacement = "[$1]";
+      var nest = function (t) {
+        t = t.replace(regex, replacement);
+        return (t.match(regex) !== null) ? nest(t) : t;
       }
 
-      return text(one);
+      return nest(text);
+    }
+  },
+
+  {
+    filter: 'bsn-array-sel-ending',
+    description: [
+      'Finds one and fixes incorrectly spaced array selectors'
+    ],
+    find: /\[\s?([\d\w\"\'\[\]]+)\s\]/g,
+    replace: function (text, regex) { // "[\1]"
+      var replacement = "[$1]";
+      var nest = function (t) {
+        t = t.replace(regex, replacement);
+        return (t.match(regex) !== null) ? nest(t) : t;
+      }
+
+      return nest(text);
     }
   },
 
@@ -141,20 +199,14 @@ utils.codeClean.regex = [
     ],
     find: /(\=|return)\s(\(|\[)\s/g,
     replace: "$1 $2"
+  },
+
+  {
+    filter: 'whitespace-methods',
+    description: [
+      'Adds whitespace between methods that are touching brackets.'
+    ],
+    find: /(\;|\})(\n|\r\n){1}([ \t]+)(\$|if|for|while|switch|foreach|function|[\d\w]+)/g,
+    replace: "$1$2$2$3$4"
   }
 ];
-
-/**
- * Takes above regex blocks, finds and replaces inefficient code / unstylish code
- * 
- * @return String
- * @package utils.codeClean
- * @author Nijiko Yonskai <nijikokun@gmail.com>
- * @year 2012
- * @license AOL <http://aol.nexua.org>
- */
-utils.codeClean = function (text) {
-  for (var i = 0; i < this.regex.length; i++)
-    text = text.replace(this.regex[i].find, this.regex[i].replace);
-  return text;
-}
