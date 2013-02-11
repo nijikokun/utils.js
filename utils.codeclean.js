@@ -241,7 +241,7 @@ utils.codeClean.regex = [
     description: [
       'Adds whitespace between methods that are touching brackets.'
     ],
-    find: /(\}\;|\})(\n|\r\n){1}([ \t]+)(\$|if|for|while|switch|foreach|function|[\d\w]+)/g,
+    find: /(\}\;|\}\)\;|\})(\n|\r\n){1}([ \t]+)(\$|if|for|while|switch|foreach|function|[\d\w]+)/g,
     replace: "$1$2$2$3$4"
   },
 ];
