@@ -153,8 +153,17 @@ utils.codeClean.regex = [
     description: [
       'Function declarations of all types with incorrect spacing.'
     ],
-    find: /(\(|\!|\;)?\s?function\s?([\w\d]+\s?)?\(\s?/g,
+    find: /(\(|\!|\;|\=\s)?\s?function\s?([\w\d]+\s?)?\(\s?/g,
     replace: "$1function $2("
+  },
+
+  {
+    filter: 'bps-functions',
+    description: [
+      'Function definitions with optional names (works but should not happen).'
+    ],
+    find: /\s?\=\s?function\s?([\w\d]+\s?)?\(\s?/g,
+    replace: " = function $1("
   },
 
   {
