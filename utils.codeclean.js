@@ -180,8 +180,8 @@ utils.codeClean.regex = [
     description: [
       'Fixes incorrectly spaced method scopes.'
     ],
-    find: /(\)|\]|\$|[\d\w]+)\.([\d\w\.]+)\s?\((?:\ |\t)/g,
-    replace: "$1.$2("
+    find: /((\)|\]|\$|[\d\w]+)\.)?([\d\w\.]+)\s?\((?:\ |\t)/g,
+    replace: "$1$2("
   },
 
   {
