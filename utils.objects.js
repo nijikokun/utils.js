@@ -5,7 +5,7 @@
     for (key in context)
       if (context.hasOwnProperty(key))
         if (Object.prototype.toString.call(context[key]) === '[object Object]')
-          original[key] = extend(original[key] || {}, context[key]);
+          original[key] = exports.extend(original[key] || {}, context[key]);
         else
           original[key] = context[key];
     return original;
